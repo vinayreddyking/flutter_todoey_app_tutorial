@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:todoey_app/widgets/expanded_tasks_listview.dart';
+
 class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -49,17 +51,7 @@ class TasksScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                  ),
-                ),
-              ),
-            ),
+            ExpandedTasksListView(),
           ],
         ),
       ),

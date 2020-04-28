@@ -29,4 +29,9 @@ class TaskData with ChangeNotifier {
     task.toggleDone();
     notifyListeners();
   }
+
+  void removeTaskByIndex(int i) {
+    _tasks.removeAt(i);
+    notifyListeners();
+  }
 }

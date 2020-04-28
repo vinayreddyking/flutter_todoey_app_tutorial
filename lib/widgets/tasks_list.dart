@@ -14,6 +14,30 @@ class TasksList extends StatelessWidget {
             title: taskData.tasks[i].title,
             isChecked: taskData.tasks[i].isDone,
             checkBoxCallback: (_) => taskData.updateTask(taskData.tasks[i]),
+            onLongPressCallback: () => showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                backgroundColor: Colors.white,
+                title: Text(
+                  'Delete ${taskData.tasks[i].title} ?',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.lightBlueAccent),
+                ),
+                actions: <Widget>[
+                  FlatButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text('No')),
+                  FlatButton(
+                      onPressed: () {
+                        taskData.removeTaskByIndex(i);
+                        Navigator.pop(context);
+                      },
+                      child: Text('Yes')),
+                ],
+              ),
+            ),
           ),
           itemCount: taskData.tasksCount,
         );

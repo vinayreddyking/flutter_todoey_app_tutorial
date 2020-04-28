@@ -1,21 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import 'package:todoey_app/models/task.dart';
+import 'package:todoey_app/models/task_data.dart';
 import 'package:todoey_app/widgets/tasks_list.dart';
 import 'package:todoey_app/screens/add_task_screen.dart';
 
-class TasksScreen extends StatefulWidget {
-  @override
-  _TasksScreenState createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [
-    Task(title: 'Buy Milk'),
-    Task(title: 'Buy Eggs'),
-    Task(title: 'Buy Bread'),
-  ];
-
+class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +45,7 @@ class _TasksScreenState extends State<TasksScreen> {
                     ),
                   ),
                   Text(
-                    '12 Tasks',
+                    '${Provider.of<TaskData>(context).tasksCount} Tasks',
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.white,
@@ -76,7 +66,7 @@ class _TasksScreenState extends State<TasksScreen> {
                     topRight: Radius.circular(20),
                   ),
                 ),
-                child: TasksList(tasks),
+                child: TasksList(),
               ),
             ),
           ],
@@ -88,14 +78,14 @@ class _TasksScreenState extends State<TasksScreen> {
         onPressed: () => showModalBottomSheet(
           context: context,
           builder: (context) => AddTaskScreen((title) {
-            setState(() {
-              tasks.insert(
-                0,
-                Task(
-                  title: title,
-                ),
-              );
-            });
+            // setState(() {
+            //   tasks.insert(
+            //     0,
+            //     Task(
+            //       title: title,
+            //     ),
+            //   );
+            // });
             Navigator.pop(context);
           }),
         ),
